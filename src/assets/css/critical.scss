@@ -1,0 +1,96 @@
+@import 'vars.css';
+@import 'normalize.css';
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
+
+*,
+:after,
+:before {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body, * {
+  margin: 0;
+  font-family: "Jost", sans-serif;
+}
+
+body {
+
+}
+
+::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 9px;
+  background-color: #484848;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #27272a;
+}
+
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  main.page {
+    flex-grow: 1;
+  }
+}
+
+.container {
+  padding-right: var(--contpadding);
+  padding-left: var(--contpadding);
+}
+
+button,
+a {
+  padding: 0;
+  border: none;
+  text-decoration: none;
+  color: inherit;
+  background-color: transparent;
+  cursor: pointer;
+  outline-offset: 2px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:disabled {
+  cursor: default;
+  opacity: 0.5;
+}
+
+input {
+  border-radius: 0;
+  outline: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  font-weight: 400;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+

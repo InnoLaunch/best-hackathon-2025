@@ -1,0 +1,124 @@
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10svh;
+  height: calc(100svh - var(--header-h));
+  overflow: hidden;
+
+  img {
+    align-self: flex-end;
+  }
+
+  .form-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    position: relative;
+    z-index: 2;
+
+    .circle {
+      position: absolute;
+      top: 0;
+      left: calc(var(--screen-width) * -0.1);
+      top: calc(var(--screen-width) * -0.1);
+      width: calc(var(--screen-width) * 1.2);
+      height: calc(var(--screen-width) * 1.2);
+      background: var(--main-color);
+      border-radius: 50%;
+      z-index: -1;
+
+    }
+
+    .switch {
+      display: flex;
+      padding: 5px 0;
+
+      .item {
+        width: 100px;
+        color: var(--white);
+        background: var(--grey);
+        text-align: center;
+
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+
+
+        &.active {
+          color: var(--black);
+          background: var(--white);
+
+        }
+
+        &:first-of-type {
+          border-radius: 5px 0px 0px 5px;
+
+        }
+        &:last-of-type {
+          border-radius: 0px 5px 5px 0px;
+        }
+
+      }
+    }
+
+    form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 40px;
+
+      input {
+        outline: none;
+        padding: 16px;
+        width: 70%;
+
+        border-radius: 5px;
+        border: 2px solid #000;
+
+        background: #FFF;
+
+        color: #000;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+
+        &::placeholder {
+          color: var(--black);
+          font-size: 20px;
+          font-style: normal;
+          font-weight: 700;
+          line-height: normal;
+        }
+      }
+
+      button {
+        width: 30%;
+        padding: 2px 0;
+        border-radius: 5px;
+        border: 1px solid #000;
+        background: #FFF;
+
+        color: #000;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+      }
+    }
+
+  }
+
+  //.circle {
+  //  width: calc(var(--screen-width) * 1.2);
+  //  height: calc(var(--screen-width) * 1.2);
+  //  background: var(--main-color);
+  //  border-radius: 50%;
+  //
+  //}
+}

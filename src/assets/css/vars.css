@@ -1,0 +1,14 @@
+:root {
+    --white: #fff;
+    --black: #181818;
+    --main-color: #A3A1FF;
+    --grey: #737373;
+    --light-gray: #D9D9D9;
+    --green: #5CFF33;
+    --yellow: #FFCA2B;
+    --red: #FF1100;
+
+    --header-h: 80px;
+    --screen-width: min(100svw, 576px);
+    --base-tr: 0.3s ease-in-out;
+}
