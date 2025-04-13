@@ -11,24 +11,42 @@ interface AuthPageProps {
 }
 
 const AuthPage: FC<AuthPageProps> = ({setIsAuthed}) => {
-
+    const [step, setStep] = useState<number>(1);
     const [username, setUsername] = useState<string>('');
     const [password, setPassword] = useState<string>('');
+    const [disabilityType, setDisabilityType] = useState<string>('');
 
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>, mode: string) => {
         e.preventDefault();
+        if (mode === 'login'){
+            try {
+                const response = await AuthService.login(username, password);
+                localStorage.setItem('access_token', response['data']['access_token'])
+                localStorage.setItem('username', username);
+                setIsAuthed(true)
 
-        try {
-            const response = await AuthService.login(username, password);
-            localStorage.setItem('access_token', response['data']['access_token'])
-            localStorage.setItem('username', username);
-            setIsAuthed(true)
-
+            }
+            catch (e: any) {
+                if (e.response.status === 401) {
+                    localStorage.removeItem('access_token');
+                }
+            }
         }
-        catch (e: any) {
-            if (e.response.status === 401) {
-                localStorage.removeItem('access_token');
+        if (mode === 'signup'){
+            try {
+                const response = await AuthService.signup(username, disabilityType, password);
+                if (response.status === 200) {
+                    const loginResponse = await AuthService.login(username, password);
+                    localStorage.setItem('access_token', loginResponse['data']['access_token'])
+                    localStorage.setItem('username', username);
+                    setIsAuthed(true);
+                }
+            }
+            catch (e: any) {
+                if (e.response.status === 401) {
+                    localStorage.removeItem('access_token');
+                }
             }
         }
     }
@@ -36,8 +54,8 @@ const AuthPage: FC<AuthPageProps> = ({setIsAuthed}) => {
     return (
         <main className='auth-page container'>
             <Header />
-            <AuthChoose />
-            {/*<AuthForm />*/}
+            {step === 1 && <AuthChoose setStep={setStep} setDisabilityType={setDisabilityType}/>}
+            {step === 2 && <AuthForm setPassword={setPassword} setUsername={setUsername} handleSubmit={handleSubmit}/>}
         </main>
     )
 

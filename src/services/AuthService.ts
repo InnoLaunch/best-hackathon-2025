@@ -17,6 +17,19 @@ export default class AuthService {
             })
     }
 
+    static async signup(username: string, disabilityType: string, password: string) {
+        return $api.post(
+            '/auth/',
+            {
+                username: username,
+                disability_type: disabilityType,
+                password: password
+            },
+            {
+                headers: {"Content-Type": "application/json"}
+            })
+    }
+
     static async refresh() {
         return $api.get('/auth/refresh')
     }
