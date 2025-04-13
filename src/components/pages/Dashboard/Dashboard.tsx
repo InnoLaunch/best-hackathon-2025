@@ -18,12 +18,11 @@ const Dashboard: FC = () => {
             49.8397,
             24.0297,
         );
-        console.log(response);
+        setLocations(response.data.locations)
     }, [selectedCategory]);
 
     useEffect(() => {
         getLocations().then((data) => {
-            // setLocations(data.data);
         })
 
     }, [getLocations, selectedCategory]);
@@ -36,18 +35,8 @@ const Dashboard: FC = () => {
     return (
         <main className='container'>
             <SearchBox setSelectedCategory={setSelectedCategory} />
-            <Map onMarkerClick={handleMarkerClick} />
-            <BottomSheet open={open} setOpen={setOpen}>
-                {selectedPlace && (
-                    <>
-                        <h2>{selectedPlace.name}</h2>
-                        <p>{selectedPlace.address}</p>
-                        <button onClick={() => window.open(`https://maps.google.com?q=${selectedPlace.lat},${selectedPlace.lng}`, '_blank')}>
-                            Open in Google Maps
-                        </button>
-                    </>
-                )}
-            </BottomSheet>
+            <Map onMarkerClick={handleMarkerClick} locations={locations}/>
+            <BottomSheet open={open} setOpen={setOpen} selectedPlace={selectedPlace} />
         </main>
     );
 };
