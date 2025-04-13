@@ -16,7 +16,10 @@ body, * {
 }
 
 body {
-
+  --_access-icon-bottom: 50px;
+  --_access-icon-right: 50px;
+  --_access-icon-left: unset;
+  --_access-icon-top: unset;
 }
 
 ::-webkit-scrollbar {
