@@ -68,7 +68,7 @@ const AuthChoose: FC<AuthChooseProps> = ({setStep, setDisabilityType}) => {
                 setTextSize={setTextSize}
                 colorTheme={colorTheme}
                 setColorTheme={setColorTheme}
-                headText={""}
+                headText={"Customize text size and theme"}
                 description={""}
                 active={isActive}
                 setActive={setIsActive}

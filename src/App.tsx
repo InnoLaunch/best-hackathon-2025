@@ -36,11 +36,11 @@ const modules = {
     decreaseLineHeight: true,
     grayHues: true,
     underlineLinks: false,
-    bigCursor: true,
+    bigCursor: false,
     readingGuide: false,
     textToSpeech: false,
     speechToText: false,
-    disableAnimations: true,
+    disableAnimations: false,
 };
 
 function App() {
