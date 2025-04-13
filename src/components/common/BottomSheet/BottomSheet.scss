@@ -25,14 +25,21 @@
   touch-action: none;
 }
 
+.bottomsheet-drag-zone {
+  height: 40px; /* або більше — залежно від UX */
+  cursor: grab;
+  touch-action: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
 .bottomsheet-drag-handle {
   width: 40px;
   height: 5px;
   background-color: #ccc;
   border-radius: 9999px;
-  margin: 0 auto 12px;
-  cursor: grab;
-  touch-action: none;
 }
 
 .bottomsheet-placeholder {

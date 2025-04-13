@@ -82,9 +82,11 @@ export default function BottomSheet({open, setOpen, children}: BottomSheetProps)
                 onClick={(e) => e.stopPropagation()}
             >
                 <div
-                    className="bottomsheet-drag-handle"
+                    className="bottomsheet-drag-zone"
                     onPointerDown={handlePointerDown}
-                />
+                >
+                    <div className="bottomsheet-drag-handle" />
+                </div>
                 {children ?? <div className="bottomsheet-placeholder">Bottom sheet content</div>}
             </div>
         </div>,
