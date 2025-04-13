@@ -1,7 +1,8 @@
-import React, {FC, useState} from 'react';
+import React, { FC, useEffect, useRef, useState } from 'react';
 import './SearchBox.scss';
 import dogIcon from '../../../assets/img/dog.png';
 import microphoneIcon from '../../../assets/img/microphone.png';
+import gsap from 'gsap';
 
 const categories = [
     { title: "Hospital", key: "hospital" },
@@ -22,8 +23,37 @@ interface SearchBoxProps {
     setSelectedCategory: (category: string) => void;
 }
 
-const SearchBox: FC<SearchBoxProps> = ({setSelectedCategory}) => {
+const SearchBox: FC<SearchBoxProps> = ({ setSelectedCategory }) => {
     const [open, setOpen] = useState(false);
+    const dropdownRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if (open && dropdownRef.current) {
+            gsap.fromTo(
+                dropdownRef.current,
+                { opacity: 0, y: -10, scale: 0.95 },
+                { opacity: 1, y: 0, scale: 1, duration: 0.3, ease: 'power2.out' }
+            );
+        }
+    }, [open]);
+
+    const handleItemClick = (catKey: string, el: HTMLDivElement) => {
+        gsap.fromTo(
+            el,
+            { scale: 1 },
+            {
+                scale: 1.1,
+                duration: 0.1,
+                yoyo: true,
+                repeat: 1,
+                ease: 'power1.inOut',
+                onComplete: () => {
+                    setSelectedCategory(catKey);
+                    setOpen(false);
+                },
+            }
+        );
+    };
 
     return (
         <div className="searchbox-wrapper">
@@ -36,9 +66,13 @@ const SearchBox: FC<SearchBoxProps> = ({setSelectedCategory}) => {
             </div>
 
             {open && (
-                <div className="dropdown">
-                    {categories.map((cat, index) => (
-                        <div key={cat.key} className="dropdown-item" onClick={() => setSelectedCategory(cat.key)}>
+                <div className="dropdown" ref={dropdownRef}>
+                    {categories.map((cat) => (
+                        <div
+                            key={cat.key}
+                            className="dropdown-item"
+                            onClick={(e) => handleItemClick(cat.key, e.currentTarget)}
+                        >
                             {cat.title}
                         </div>
                     ))}
